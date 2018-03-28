@@ -13,7 +13,7 @@ class plSession(object):
 		self.api_key = api_key
 		self.endpoint = endpoint
 
-	# TODO: change versioning code, should be per-API used
+	# Basic requst handler, will be split per-API afer
 	def _request(self, url, params={}):
 		args = {
 			'endpoint': 	const.ENDPOINTS[self.endpoint],
@@ -32,10 +32,15 @@ class plSession(object):
 		req = requests.get(req_url)
 		return req.json()
 
+	# params can be summoner_id or champion_id
+	def _cmast_request(self, params={}):
+		pass
 
-#https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/RiotSchmick?api_key=<key>
 
 
-tsesh = plSession('RGAPI-9c7f451e-0501-40ce-b76b-4a54459372da')
+# Hello World!
+# https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/RiotSchmick?api_key=<key>
+tsesh = plSession('--')
 r = tsesh._request(const.URLS_SUMMON['by name'], params = {'summoner_name': 'RiotSchmick'})
 print(r)
+#
