@@ -3,7 +3,7 @@
 VERSIONS = {
     'cmastery':                 'v3',
     'champion':                 'v3',
-    'ceague':                   'v3',
+    'league':                   'v3',
     'sdata':                    'v3',
     'status':                   'v3',
     'match':                    'v3',
@@ -87,7 +87,7 @@ URLS_CHAMPION = {
     'all':                      URLS_BASE['champion'] + '/champions',
 
     # Retrieve champion by ID.
-    'by champion':              URLS_BASE['champion'] + '/champions/{id}'
+    'by champion':              URLS_BASE['champion'] + '/champions/{champion_id}'
 }
 
 URLS_LEAGUE = {
@@ -109,13 +109,13 @@ URLS_SDATA = {
     'champions':                URLS_BASE['sdata'] + '/champions/',
 
     # Retrieves champion by ID.
-    'by champion':              URLS_BASE['sdata'] + '/champions/{id}',
+    'by champion':              URLS_BASE['sdata'] + '/champions/{champion_id}',
 
     # Retrieves item list.
     'items':                    URLS_BASE['sdata'] + '/items',
 
     # Retrieves item by ID.
-    'by item':                  URLS_BASE['sdata'] + '/items/{id}',
+    'by item':                  URLS_BASE['sdata'] + '/items/{item_id}',
 
     # Retrieve language strings data.
     'language strings':         URLS_BASE['sdata'] + '/language-strings',
@@ -130,7 +130,7 @@ URLS_SDATA = {
     'masteries':                URLS_BASE['sdata'] + '/masteries',
 
     # Retrieve mastery item by ID.
-    'by mastery':               URLS_BASE['sdata'] + '/masteries/{id}',
+    'by mastery':               URLS_BASE['sdata'] + '/masteries/{mastery_id}',
 
     # Retrieve profile icons.
     'profile icons':            URLS_BASE['sdata'] + '/profile-icons',
@@ -142,25 +142,25 @@ URLS_SDATA = {
     'rune paths':               URLS_BASE['sdata'] + '/reforged-rune-paths',
 
     # Retrieves reforged rune path by ID.
-    'by rune path':             URLS_BASE['sdata'] + '/reforged-rune-paths/{id}',
+    'by rune path':             URLS_BASE['sdata'] + '/reforged-rune-paths/{path_id}',
 
     # Retrieves reforged rune list.
     'reforged runes':           URLS_BASE['sdata'] + '/reforged-runes',
 
     # Retrieves reforged rune by ID.
-    'by reforged rune':         URLS_BASE['sdata'] + 'r/eforged-runes/{id}',
+    'by reforged rune':         URLS_BASE['sdata'] + 'r/eforged-runes/{rune_id}',
 
     # Retrieves rune list.
     'runes':                    URLS_BASE['sdata'] + '/runes',
 
     # Retrieves rune by ID.
-    'by rune':                  URLS_BASE['sdata'] + '/runes/{id}',
+    'by rune':                  URLS_BASE['sdata'] + '/runes/{rune_id}',
 
     # Retrieves summoner spell list.
     'summoner spells':          URLS_BASE['sdata'] + '/summoner-spells',
 
     # Retrieves summoner spell by ID.
-    'by summoner spell':        URLS_BASE['sdata'] + '/summoner-spells/{id}',
+    'by summoner spell':        URLS_BASE['sdata'] + '/summoner-spells/{spell_id}',
 
     # Retrieves full tarball link
     'tarball links':            URLS_BASE['sdata'] + '/tarball-links',
@@ -270,11 +270,6 @@ MATCH_QUEUES = {
     '0':                        'Custom',
     '72':                       ''
 }
-
-
-
-
-
 
 
 
