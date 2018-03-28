@@ -46,9 +46,9 @@ print(r)
 
 
 # Methods to access Champion Mastery API
-
 class ChampionMastery(object):
 
+	@staticmethod
 	def getAllMasteries(session, summoner_id):
 		r = session._request(
 			URL = const.URLS_CMASTER['all'], 
@@ -56,10 +56,22 @@ class ChampionMastery(object):
 		)
 		return r
 
+	@staticmethod
 	def getMasterByChampion(session, summoner_id, champion_id):
 		r = session._request(
 			URL = const.URLS_CMASTER['by champion'], 
-			params = 
+			params = {'summoner_id': summoner_id, 'champion_id': champion_id}
 		)
 		return r
+
+	@staticmethod
+	def getTotalMastery(session, summoner_id):
+		r = session._request(
+			URL = const.URLS_CMASTER['mastery'],
+			params = {'summoner_id': summoner_id}
+		)
+
+
+#Methods to access Static Data Api
+class StaticData(object):
 
