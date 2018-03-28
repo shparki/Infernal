@@ -14,7 +14,7 @@ class plSession(object):
 		self.endpoint = endpoint
 
 	# Basic requst handler, will be split per-API afer
-	def _request(self, url, params={}):
+	def _request(self, url, params={}, headers={}):
 		args = {
 			'endpoint': 	const.ENDPOINTS[self.endpoint],
 			'url':			url,
@@ -29,18 +29,37 @@ class plSession(object):
 			default_dict(**params))
 		#print(req_url)
 
-		req = requests.get(req_url)
+		req = requests.get(req_url, headers=headers)
 		return req.json()
-
-	# params can be summoner_id or champion_id
-	def _cmast_request(self, params={}):
-		pass
 
 
 
 # Hello World!
 # https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/RiotSchmick?api_key=<key>
-tsesh = plSession('--')
+tsesh = plSession('RGAPI-9c7f451e-0501-40ce-b76b-4a54459372da')
 r = tsesh._request(const.URLS_SUMMON['by name'], params = {'summoner_name': 'RiotSchmick'})
 print(r)
 #
+
+
+
+
+
+# Methods to access Champion Mastery API
+
+class ChampionMastery(object):
+
+	def getAllMasteries(session, summoner_id):
+		r = session._request(
+			URL = const.URLS_CMASTER['all'], 
+			params = {'summoner_id': summoner_id}
+		)
+		return r
+
+	def getMasterByChampion(session, summoner_id, champion_id):
+		r = session._request(
+			URL = const.URLS_CMASTER['by champion'], 
+			params = 
+		)
+		return r
+
