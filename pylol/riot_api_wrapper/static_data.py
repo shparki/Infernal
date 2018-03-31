@@ -1,5 +1,5 @@
-import utils
-from utils import const
+from .utils import Session
+from . import constants as const
 
 # Methods to access Static Data API
 # TODO: eventually add a timer to method calls here, with an option to override the timer --> will save api calls

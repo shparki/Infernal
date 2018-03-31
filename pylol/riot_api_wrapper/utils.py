@@ -1,4 +1,6 @@
-import constants as const
+from . import constants as const
+import requests
+
 
 class default_dict(dict):
 	def __missing__(self, key):
@@ -25,3 +27,5 @@ class Session(object):
 
 		req = requests.get(req_url, headers=headers)
 		return req.json()
+
+

@@ -1,5 +1,5 @@
-import utils
-from utils import const
+from .utils import Session
+from . import constants as const
 
 # Methods to access Champion API
 class Champion(object):

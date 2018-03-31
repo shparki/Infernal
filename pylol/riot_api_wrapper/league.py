@@ -1,5 +1,5 @@
-import utils
-from utils import const
+from .utils import Session
+from . import constants as const
 
 class League(object):
 	version = const.VERSIONS['league']
