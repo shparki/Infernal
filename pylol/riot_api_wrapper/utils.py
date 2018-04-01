@@ -15,12 +15,10 @@ class default_dict(dict):
 
 class Session(object):
 
-	def __init__ (self, api_key, endpoint='na-old', req_sec = 20, req_tmin = 100):
+	def __init__ (self, api_key, endpoint='na-old'):
 		self.api_key = api_key
 		self.endpoint = endpoint
 		self.uid = datetime.datetime.today().strftime('%y%m%d_%H%M%S')
-		self.req_sec = req_sec
-		self.req_tmin = req_tmin
 
 		if not os.path.exists(DATA_PATH):
 			os.mkdir(DATA_PATH)
@@ -97,9 +95,6 @@ class Session(object):
 			logging.critical(message)
 		else:
 		 	logging.error('level \'%s\' does not exist. \n\t Message: %s', str(level), str(message[:250]))
-
-
-
 
 
 
