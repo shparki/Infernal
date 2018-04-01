@@ -15,10 +15,12 @@ class default_dict(dict):
 
 class Session(object):
 
-	def __init__ (self, api_key, endpoint='na-old'):
+	def __init__ (self, api_key, endpoint='na-old', req_sec = 20, req_tmin = 100):
 		self.api_key = api_key
 		self.endpoint = endpoint
 		self.uid = datetime.datetime.today().strftime('%y%m%d_%H%M%S')
+		self.req_sec = req_sec
+		self.req_tmin = req_tmin
 
 		if not os.path.exists(DATA_PATH):
 			os.mkdir(DATA_PATH)
@@ -55,7 +57,7 @@ class Session(object):
 		return 'session_{}'.format(self.uid)
 
 	# Basic requst handler, will be split per-API afer
-	def _request(self, url, params={}, headers={}):
+	def _request(self, url, params={}):
 		args = {
 			'endpoint': const.ENDPOINTS[self.endpoint],
 			'url':		url,
@@ -70,7 +72,7 @@ class Session(object):
 		self._log('Requesting...')
 		self._log('URL: ' + str(req_url))
 
-		req = requests.get(req_url, headers=headers)
+		req = requests.get(req_url)
 
 		self._log('RESPONSE CODE: ' + str(req.status_code))
 		self._log('RESPONSE: ' + str(req.json()))
@@ -78,9 +80,10 @@ class Session(object):
 
 		return req.json()
 
-	def _log(self, message, level='debug'):
-		if len(message) > 250:
-			message = message[:150] + '...'
+	def _log(self, message, level='debug', full=False):
+		if not full:
+			if len(message) > 250:
+				message = message[:150] + '...'
 
 		if level == 'info':
 			logging.info(message)

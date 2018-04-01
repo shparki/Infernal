@@ -6,6 +6,7 @@ class ChampionMastery(object):
 
 	@classmethod
 	def getAllMasteries(cls, session, summoner_id):
+		session._log('Calling getAllMasteries...')
 		r = session._request(
 			url = const.URLS_CMASTER['all'], 
 			params = {
@@ -16,7 +17,8 @@ class ChampionMastery(object):
 		return r
 
 	@classmethod
-	def getMasterByChampion(cls, session, summoner_id, champion_id):
+	def getMasteryByChampion(cls, session, summoner_id, champion_id):
+		session._log('Calling getMasteryByChampion...')
 		r = session._request(
 			url = const.URLS_CMASTER['by champion'], 
 			params = {
@@ -29,6 +31,7 @@ class ChampionMastery(object):
 
 	@classmethod
 	def getTotalMastery(cls, session, summoner_id):
+		session._log('Calling getTotalMastery...')
 		r = session._request(
 			url = const.URLS_CMASTER['mastery'],
 			params = {

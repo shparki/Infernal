@@ -6,6 +6,7 @@ class Summoner(object):
 
 	@classmethod
 	def getSummByAccount(cls, session, account_id):
+		session._log('Calling getSummByAccount...')
 		r = session._request(
 			url = const.URLS_SUMMON['by account'],
 			params = {
@@ -17,6 +18,7 @@ class Summoner(object):
 
 	@classmethod
 	def getSummByName(cls, session, summoner_name):
+		session._log('Calling getSummByName...')
 		r = session._request(
 			url = const.URLS_SUMMON['by name'],
 			params = {
@@ -28,6 +30,7 @@ class Summoner(object):
 
 	@classmethod
 	def getSummByID(cls, session, summoner_id):
+		session._log('Calling getSummByID...')
 		r = session._request(
 			url = const.URLS_SUMMON['by id'],
 			params = {

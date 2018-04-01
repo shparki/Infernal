@@ -4,7 +4,7 @@ sys.path.append('..')
 import pylol as pl
 import pylol.riot_api_wrapper as raw
 
-session = raw.Session('--')
+session = raw.Session('RGAPI-81d7b482-d13b-4c04-bf16-383a7e8be6a2')
 
 
 

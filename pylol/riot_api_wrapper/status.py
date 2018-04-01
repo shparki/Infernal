@@ -7,6 +7,7 @@ class Status(object):
 
 	@classmethod
 	def getStatus(cls, session):
+		session._log('Calling getStatus...')
 		r = session._request(
 			url = const.URLS_STATUS['status'],
 			params = {

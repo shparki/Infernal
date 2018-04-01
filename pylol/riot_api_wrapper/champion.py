@@ -5,8 +5,10 @@ from . import constants as const
 class Champion(object):
 	version = const.VERSIONS['champion']
 
+
 	@classmethod
 	def getChamps(cls, session):
+		session._log('Calling getChamps...')
 		r = session._request(
 			url = const.URLS_CHAMPION['all'],
 			params = {
@@ -17,6 +19,7 @@ class Champion(object):
 
 	@classmethod
 	def getChamp(cls, session, champion_id):
+		session._log('calling getChamp...')
 		r = sesion._request(
 			url = const.URLS_CHAMPION['by champion'],
 			params = {

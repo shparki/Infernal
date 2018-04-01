@@ -6,6 +6,7 @@ class ThirdPartyCode(object):
 
 	@classmethod
 	def getTPC(cls, session, summoner_id):
+		session._log('Calling getTPC...')
 		r = session._request(
 			url = const.URLS_TPC['by id'],
 			params = {

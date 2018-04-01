@@ -9,6 +9,7 @@ class StaticData(object):
 
 	@classmethod
 	def getChamps(cls, session):
+		session._log('Calling getChamps...')
 		r = session._request(
 			url = const.URLS_SDATA['champions'],
 			params = {
@@ -19,6 +20,7 @@ class StaticData(object):
 
 	@classmethod
 	def getChamp(cls, session, champion_id):
+		session._log('Calling getChamp...')
 		r = session._request(
 			url = const.URLS_SDATA['by champion'],
 			params = {
@@ -30,6 +32,7 @@ class StaticData(object):
 
 	@classmethod
 	def getItems(cls, session):
+		session._log('Calling getItems...')
 		r = session._request(
 			url = const.URLS_SDATA['items'],
 			params = {
@@ -40,6 +43,7 @@ class StaticData(object):
 
 	@classmethod
 	def getItem(cls, session, item_id):
+		session._log('Calling getItem...')
 		r = session._request(
 			url = const.URLS_SDATA['by item'],
 			params = {
@@ -51,6 +55,7 @@ class StaticData(object):
 
 	@classmethod
 	def getLangStrings(cls, sesion):
+		session._log('Calling getLangStrings...')
 		r = session._request(
 			url = const.URLS_SDATA['langauge strings'],
 			params = {
@@ -61,6 +66,7 @@ class StaticData(object):
 
 	@classmethod
 	def getSuppLangs(cls, session):
+		session._log('Calling getSuppLangs...')
 		r = session._request(
 			url = const.URLS_SDATA['supported langauges'],
 			params = {
@@ -71,6 +77,7 @@ class StaticData(object):
 
 	@classmethod
 	def getMaps(cls, session):
+		session._log('Calling getMaps...')
 		r = session._request(
 			url = const.URLS_SDATA['maps'],
 			params = {
@@ -81,6 +88,7 @@ class StaticData(object):
 
 	@classmethod
 	def getMasteries(cls, session):
+		session._log('Calling getMaps...')
 		r = session._request(
 			url = const.URLS_SDATA['masteries'],
 			params = {
@@ -91,6 +99,7 @@ class StaticData(object):
 
 	@classmethod
 	def getMastery(cls, session, mastery_id):
+		session._log('Calling getMastery...')
 		r = session._request(
 			url = const.URLS_SDATA['by mastery'],
 			params = {
@@ -102,6 +111,7 @@ class StaticData(object):
 
 	@classmethod
 	def getIcons(cls, session):
+		session._log('Calling getIcons...')
 		r = session._request(
 			url = const.URLS_SDATA['profile icons'],
 			params = {
@@ -112,6 +122,7 @@ class StaticData(object):
 
 	@classmethod
 	def getRealms(cls,session):
+		session._log('Calling getRealms...')
 		r = session._request(
 			url = const.URLS_SDATA['realms'],
 			params = {
@@ -122,6 +133,7 @@ class StaticData(object):
 
 	@classmethod
 	def getRefPaths(cls, session):
+		session._log('Calling getRefPaths...')
 		r = session._request(
 			url = const.URLS_SDATA['rune paths'],
 			params = {
@@ -132,6 +144,7 @@ class StaticData(object):
 
 	@classmethod
 	def getRefPath(cls, session, path_id):
+		session._log('Calling getRefPaths...')
 		r = session._request(
 			url = const.URLS_SDATA['by rune path'],
 			params = {
@@ -143,6 +156,7 @@ class StaticData(object):
 
 	@classmethod
 	def getRefRunes(cls, session):
+		session._log('Calling getRefRunes...')
 		r = session._request(
 			url = const.URLS_SDATA['reforged runes'],
 			params = {
@@ -153,6 +167,7 @@ class StaticData(object):
 
 	@classmethod
 	def getRefRune(cls, session, rune_id):
+		session._log('Calling getRefRunes...')
 		r = session._request(
 			url = const.URLS_SDATA['by reforged rune'],
 			params = {
@@ -164,6 +179,7 @@ class StaticData(object):
 
 	@classmethod
 	def getRunes(cls, session):
+		session._log('Calling getRunes...')
 		r = session._request(
 			url = const.URLS_SDATA['runes'],
 			params = {
@@ -174,6 +190,7 @@ class StaticData(object):
 
 	@classmethod
 	def getRune(cls, session, rune_id):
+		session._log('Calling getRune...')
 		r = session._request(
 			url = const.URLS_SDATA['by rune'],
 			params = {
@@ -185,6 +202,7 @@ class StaticData(object):
 
 	@classmethod
 	def getSumSpells(cls, session):
+		session._log('Calling getSumSpells...')
 		r = session._request(
 			url = const.URLS_SDATA['summoner spells'],
 			params = {
@@ -195,6 +213,7 @@ class StaticData(object):
 
 	@classmethod
 	def getSumSpell(cls, session, spell_id):
+		session._log('Calling getSumSpells...')
 		r = session._request(
 			url = const.URLS_SDATA['by summoner spell'],
 			params = {
@@ -206,6 +225,7 @@ class StaticData(object):
 
 	@classmethod
 	def getTarball(cls, session):
+		session._log('Calling getTarball...')
 		r = session._request(
 			url = const.URLS_SDATA['tarball links'],
 			params = {
@@ -216,6 +236,7 @@ class StaticData(object):
 
 	@classmethod
 	def getVersions(cls, session):
+		session._log('Calling getVersions...')
 		r = session._request(
 			url = const.URLS_SDATA['versions'],
 			params= {

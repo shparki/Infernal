@@ -6,6 +6,7 @@ class League(object):
 
 	@classmethod
 	def getChLeague(cls, session, queue):
+		session._log('Calling getChLeague...')
 		r = session._request(
 			url = const.URLS_LEAGUE['challenger'],
 			params = {
@@ -17,6 +18,7 @@ class League(object):
 
 	@classmethod
 	def getLeague(cls, session, league_id):
+		session._log('Calling getLeague...')
 		r = session._request(
 			url = const.URLS_LEAGUE['by league'],
 			params = {
@@ -28,6 +30,7 @@ class League(object):
 
 	@classmethod
 	def getMsLeague(cls, session, queue):
+		session._log('Calling getMsLeague...')
 		r = session._request(
 			url = const.URLS_LEAGUE['master'],
 			params = {
@@ -39,6 +42,7 @@ class League(object):
 
 	@classmethod
 	def getSummLeague(cls, session, summoner_id):
+		session._log('Calling getSummLeague...')
 		r = session._request(
 			url = const.URLS_LEAGUE['by summoner'],
 			params = {

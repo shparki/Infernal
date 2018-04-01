@@ -6,6 +6,7 @@ class Spectator(object):
 
 	@classmethod
 	def getActive(cls, session, summoner_id):
+		session._log('Calling getActive...')
 		r = session._request(
 			url = const.URLS_SPECT['active'],
 			params = {
@@ -17,6 +18,7 @@ class Spectator(object):
 
 	@classmethod
 	def getFeatured(cls, session):
+		session._log('Calling getFeatured...')
 		r = session._request(
 			url = const.URLS_SPECT['featured'],
 			params = {

@@ -6,6 +6,7 @@ class TournamentStub(object):
 
 	@classmethod
 	def getCode(cls, session):
+		session._log('Calling getCode...')
 		r = session._request(
 			url = const.URLS_TSTUB['codes'],
 			params = {
@@ -16,6 +17,7 @@ class TournamentStub(object):
 
 	@classmethod
 	def getCodesByTourn(cls, session, tournament_code):
+		session._log('Calling getCodesByTourn...')
 		r = session._request(
 			url = const.URLS_TSTUB['by tournament'],
 			params = {
@@ -27,6 +29,7 @@ class TournamentStub(object):
 
 	@classmethod
 	def getProviders(cls, session, tournament_code):
+		session._log('Calling getProviders...')
 		r = session._request(
 			url = const.URLS_TSTUB['providers'],
 			params = {
@@ -37,6 +40,7 @@ class TournamentStub(object):
 
 	@classmethod
 	def getTournaments(cls, session):
+		session._log('Calling getTournaments...')
 		r = session._request(
 			url = const.URLS_TSTUB['tournaments'],
 			params = {

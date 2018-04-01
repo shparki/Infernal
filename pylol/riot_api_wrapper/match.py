@@ -6,6 +6,7 @@ class Match(object):
 
 	@classmethod
 	def getTournMatchIDs(cls, session, tournament_code):
+		session._log('Calling getTournMatchIDs...')
 		r = sesion._request(
 			url = const.URLS_MATCH['matchID by tournament'],
 			params = {
@@ -17,6 +18,7 @@ class Match(object):
 
 	@classmethod
 	def getMatchByID(cls, session, match_id):
+		session._log('Calling getMatchByID...')
 		r = session._request(
 			url = const.URLS_MATCH['by match'],
 			params = {
@@ -28,6 +30,7 @@ class Match(object):
 
 	@classmethod
 	def getMatchByTourn(cls, session, match_id, tournament_code):
+		session._log('Calling getMatchByTourn...')
 		r = session._request(
 			url = const.URLS_MATCH['by tournament'],
 			params = {
@@ -40,6 +43,7 @@ class Match(object):
 
 	@classmethod
 	def getMatches(cls, session, account_id):
+		session._log('Calling getMatches...')
 		r = session._request(
 			url = const.URLS_MATCH['by account'],
 			params = {
@@ -51,6 +55,7 @@ class Match(object):
 
 	@classmethod
 	def getRecent(cls, session, account_id):
+		session._log('Calling getRecent...')
 		r = session._request(
 			url = const.URLS_MATCH['recent by account'],
 			params = {
@@ -62,6 +67,7 @@ class Match(object):
 
 	@classmethod
 	def getTimeline(cls, session, match_id):
+		session._log('Calling getTimeline...')
 		r = session._request(
 			url = const.URLS_MATCH['timeline'],
 			params = {
