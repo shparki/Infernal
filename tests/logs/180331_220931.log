@@ -1,0 +1,6 @@
+[DEBUG] 10:09:31 PM : Initialized session session_180331_220931
+[DEBUG] 10:09:31 PM : Requesting...
+[DEBUG] 10:09:31 PM : URL: https://na1.api.riotgames.com/lol/platform/v3/champions?api_key=RGAPI-81d7b482-d13b-4c04-bf16-383a7e8be6a2
+[DEBUG] 10:09:32 PM : RESPONSE CODE: 200
+[DEBUG] 10:09:32 PM : RESPONSE: {'champions': [{'id': 266, 'active': True, 'botEnabled': False, 'freeToPlay': True, 'botMmEnabled': False, 'rankedPlayEnabled': True}, {'id'...
+[DEBUG] 10:09:32 PM : Done!

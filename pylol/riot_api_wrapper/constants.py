@@ -104,7 +104,7 @@ URLS_LEAGUE = {
 }
 
 URLS_SDATA = {
-    # Retrieves champoin list.
+    # Retrieves champion list.
     'champions':                URLS_BASE['sdata'] + '/champions/',
 
     # Retrieves champion by ID.
