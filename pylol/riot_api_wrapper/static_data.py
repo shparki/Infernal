@@ -8,7 +8,7 @@ class StaticData(object):
 	version = const.VERSIONS['sdata']
 
 	@classmethod
-	def getChamps(cls, session):
+	def getChampions(cls, session):
 		session._log('Calling getChamps...')
 		r = session._request(
 			url = const.URLS_SDATA['champions'],
@@ -19,7 +19,7 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getChamp(cls, session, champion_id):
+	def getChampion(cls, session, champion_id):
 		session._log('Calling getChamp...')
 		r = session._request(
 			url = const.URLS_SDATA['by champion'],
@@ -54,7 +54,7 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getLangStrings(cls, sesion):
+	def getLanguageStrings(cls, sesion):
 		session._log('Calling getLangStrings...')
 		r = session._request(
 			url = const.URLS_SDATA['langauge strings'],
@@ -65,7 +65,7 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getSuppLangs(cls, session):
+	def getSupportedLanguages(cls, session):
 		session._log('Calling getSuppLangs...')
 		r = session._request(
 			url = const.URLS_SDATA['supported langauges'],
@@ -132,7 +132,7 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getRefPaths(cls, session):
+	def getReforgedPaths(cls, session):
 		session._log('Calling getRefPaths...')
 		r = session._request(
 			url = const.URLS_SDATA['rune paths'],
@@ -143,7 +143,7 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getRefPath(cls, session, path_id):
+	def getReforgedPath(cls, session, path_id):
 		session._log('Calling getRefPaths...')
 		r = session._request(
 			url = const.URLS_SDATA['by rune path'],
@@ -155,7 +155,7 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getRefRunes(cls, session):
+	def getReforgedRunes(cls, session):
 		session._log('Calling getRefRunes...')
 		r = session._request(
 			url = const.URLS_SDATA['reforged runes'],
@@ -166,7 +166,7 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getRefRune(cls, session, rune_id):
+	def getReforgedRune(cls, session, rune_id):
 		session._log('Calling getRefRunes...')
 		r = session._request(
 			url = const.URLS_SDATA['by reforged rune'],
@@ -201,7 +201,7 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getSumSpells(cls, session):
+	def getSummonerSpells(cls, session):
 		session._log('Calling getSumSpells...')
 		r = session._request(
 			url = const.URLS_SDATA['summoner spells'],
@@ -212,7 +212,7 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getSumSpell(cls, session, spell_id):
+	def getSummonerSpell(cls, session, spell_id):
 		session._log('Calling getSumSpells...')
 		r = session._request(
 			url = const.URLS_SDATA['by summoner spell'],
@@ -224,7 +224,7 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getTarball(cls, session):
+	def getTarballLinks(cls, session):
 		session._log('Calling getTarball...')
 		r = session._request(
 			url = const.URLS_SDATA['tarball links'],

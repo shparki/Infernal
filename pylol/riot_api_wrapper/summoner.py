@@ -5,7 +5,7 @@ class Summoner(object):
 	version = const.VERSIONS['summoner']
 
 	@classmethod
-	def getSummByAccount(cls, session, account_id):
+	def getSummonerByAccount(cls, session, account_id):
 		session._log('Calling getSummByAccount...')
 		r = session._request(
 			url = const.URLS_SUMMON['by account'],
@@ -17,7 +17,7 @@ class Summoner(object):
 		return r
 
 	@classmethod
-	def getSummByName(cls, session, summoner_name):
+	def getSummonerByName(cls, session, summoner_name):
 		session._log('Calling getSummByName...')
 		r = session._request(
 			url = const.URLS_SUMMON['by name'],
@@ -29,7 +29,7 @@ class Summoner(object):
 		return r
 
 	@classmethod
-	def getSummByID(cls, session, summoner_id):
+	def getSummonerByID(cls, session, summoner_id):
 		session._log('Calling getSummByID...')
 		r = session._request(
 			url = const.URLS_SUMMON['by id'],

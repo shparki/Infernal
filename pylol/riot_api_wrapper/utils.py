@@ -9,6 +9,7 @@ DATA_PATH = os.getcwd() + '/data'
 LOGS_PATH = os.getcwd() + '/logs'
 
 
+
 class default_dict(dict):
 	def __missing__(self, key):
 		return '{' + key + '}'

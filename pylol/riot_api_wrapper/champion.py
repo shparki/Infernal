@@ -7,7 +7,7 @@ class Champion(object):
 
 
 	@classmethod
-	def getChamps(cls, session):
+	def getChampions(cls, session):
 		session._log('Calling getChamps...')
 		r = session._request(
 			url = const.URLS_CHAMPION['all'],
@@ -18,7 +18,7 @@ class Champion(object):
 		return r
 
 	@classmethod
-	def getChamp(cls, session, champion_id):
+	def getChampion(cls, session, champion_id):
 		session._log('calling getChamp...')
 		r = sesion._request(
 			url = const.URLS_CHAMPION['by champion'],

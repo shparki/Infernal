@@ -16,7 +16,7 @@ class TournamentStub(object):
 		return r
 
 	@classmethod
-	def getCodesByTourn(cls, session, tournament_code):
+	def getCodesByTournament(cls, session, tournament_code):
 		session._log('Calling getCodesByTourn...')
 		r = session._request(
 			url = const.URLS_TSTUB['by tournament'],

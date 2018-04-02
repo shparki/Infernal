@@ -5,7 +5,7 @@ class League(object):
 	version = const.VERSIONS['league']
 
 	@classmethod
-	def getChLeague(cls, session, queue):
+	def getChallengerLeague(cls, session, queue):
 		session._log('Calling getChLeague...')
 		r = session._request(
 			url = const.URLS_LEAGUE['challenger'],
@@ -29,7 +29,7 @@ class League(object):
 		return r
 
 	@classmethod
-	def getMsLeague(cls, session, queue):
+	def getMasterLeague(cls, session, queue):
 		session._log('Calling getMsLeague...')
 		r = session._request(
 			url = const.URLS_LEAGUE['master'],
@@ -41,7 +41,7 @@ class League(object):
 		return r
 
 	@classmethod
-	def getSummLeague(cls, session, summoner_id):
+	def getSummonerLeague(cls, session, summoner_id):
 		session._log('Calling getSummLeague...')
 		r = session._request(
 			url = const.URLS_LEAGUE['by summoner'],

@@ -9,7 +9,7 @@ session = raw.Session('RGAPI-81d7b482-d13b-4c04-bf16-383a7e8be6a2')
 
 
 def main():
-	raw.Champion.getChamps(session)
+	raw.Champion.getChampions(session)
 
 
 
@@ -17,7 +17,7 @@ def main():
 
 
 def hello_world():
-	rs = raw.Summoner.getSummByName(session, 'RiotSchmick')
+	rs = raw.Summoner.getSummonerByName(session, 'RiotSchmick')
 	print(rs)
 
 def logger_test():
