@@ -9,11 +9,6 @@ import csv
 DATA_PATH = os.getcwd() + '/data'
 LOGS_PATH = os.getcwd() + '/logs'
 
-
-def json_to_csv(json_data):
-	pass
-
-
 class default_dict(dict):
 	def __missing__(self, key):
 		return '{' + key + '}'
@@ -150,7 +145,11 @@ class Session(object):
 		else:
 		 	logging.error('level \'%s\' does not exist. \n\t Message: %s', str(level), str(message[:250]))
 
+	def _cache(self, data):
+		pass
 
+	def _decache(self, name):
+		pass
 
 
 

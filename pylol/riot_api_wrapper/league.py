@@ -49,7 +49,7 @@ class League(object):
 		return r
 
 	@classmethod
-	def getSummonerLeague(cls, session, summoner_id):
+	def getSummonerLeague(cls, session, summoner_id, params={}):
 		session._log('Calling getSummLeague...')
 		url = session._buildurl(
 			url = const.URLS_LEAGUE['by summoner'],
@@ -59,4 +59,9 @@ class League(object):
 			}
 		)
 		r = session._request(url, params=params)
-		return r
+
+		data_series = pd.Series(r[0])
+		return data_series
+
+
+

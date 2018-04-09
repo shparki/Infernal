@@ -6,12 +6,13 @@ class Status(object):
 	version = const.VERSIONS['status']
 
 	@classmethod
-	def getStatus(cls, session):
+	def getStatus(cls, session, params={}):
 		session._log('Calling getStatus...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_STATUS['status'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
+		r = session._request(url, params=params)
 		return r
