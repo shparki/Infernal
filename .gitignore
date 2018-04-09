@@ -1,0 +1,6 @@
+# python cache files
+pylol/__pycache__/
+pylol/riot_api_wrapper/__pycache__/
+
+# Tests folder
+tests/
