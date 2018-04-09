@@ -3,11 +3,15 @@ import requests
 import datetime
 import os
 import logging
+import csv
 
 #eventually make available to change in pylol.cfg
 DATA_PATH = os.getcwd() + '/data'
 LOGS_PATH = os.getcwd() + '/logs'
 
+
+def json_to_csv(json_data):
+	pass
 
 
 class default_dict(dict):
@@ -18,12 +22,15 @@ class Session(object):
 
 	def __init__ (self, api_key, endpoint='na-old'):
 		self.api_key = api_key
-		self.endpoint = endpoint
+		self.endpoint = 'na-old'
+		if endpoint in const.ENDPOINTS.keys():
+			self.endpoint = endpoint
+		# add code here to log that endpoint not found, using default endopint
+
 		self.uid = datetime.datetime.today().strftime('%y%m%d_%H%M%S')
 
 		if not os.path.exists(DATA_PATH):
 			os.mkdir(DATA_PATH)
-
 
 		if not os.path.exists(LOGS_PATH):
 			os.mkdir(LOGS_PATH)
@@ -50,34 +57,80 @@ class Session(object):
 
 
 
-
-
 	def __str__(self):
 		return 'session_{}'.format(self.uid)
 
+
+
+
+
+
 	# Basic requst handler, will be split per-API afer
-	def _request(self, url, params={}):
+	# def _request(self, url, url_params={}, params={}):
+		
+	# 	param_string = ''
+	# 	params['api_key'] = self.api_key
+	# 	if len(params) > 1:
+	# 		pass
+	# 	else:
+	# 		param_string += str(list(params.keys())[0] + '=' + list(params.values())[0])
+
+
+	# 	args = {
+	# 		'endpoint': const.ENDPOINTS[self.endpoint],
+	# 		'url':		url,
+	# 		'params':	param_string
+	# 	}
+	# 	req_url = const.URLS_BASE['base'].format_map(
+	# 		default_dict(**args))
+
+	# 	req_url = req_url.format_map(
+	# 		default_dict(**url_params))
+
+
+	# 	self._log('Requesting...')
+	# 	self._log('URL: ' + str(req_url))
+
+	# 	req = requests.get(req_url)
+
+	# 	self._log('RESPONSE CODE: ' + str(req.status_code))
+	# 	self._log('RESPONSE: ' + str(req.json()))
+	# 	self._log('Done!')
+
+	# 	return req.json()
+
+	def _buildurl (self, url, url_params = {}):
 		args = {
-			'endpoint': const.ENDPOINTS[self.endpoint],
-			'url':		url,
-			'api_key': 	self.api_key,
+			'endpoint':	const.ENDPOINTS[self.endpoint],
+			'url':		url
 		}
 		req_url = const.URLS_BASE['base'].format_map(
 			default_dict(**args))
-
 		req_url = req_url.format_map(
-			default_dict(**params))
+			default_dict(**url_params))
+
+
+		return req_url
+
+	def _request(self, url, params = {}):
+		param_string = ''
+		for key, value in params.items():
+			param_string += (str(key) + '=' + str(value) + '&')
+		param_string += ('api_key=' + self.api_key)
+		url = url.format(params = param_string)
 
 		self._log('Requesting...')
-		self._log('URL: ' + str(req_url))
+		self._log('URL: ' + str(url))
 
-		req = requests.get(req_url)
+		req = requests.get(url)
 
 		self._log('RESPONSE CODE: ' + str(req.status_code))
 		self._log('RESPONSE: ' + str(req.json()))
 		self._log('Done!')
 
 		return req.json()
+
+
 
 	def _log(self, message, level='debug', full=False):
 		if not full:
@@ -96,7 +149,6 @@ class Session(object):
 			logging.critical(message)
 		else:
 		 	logging.error('level \'%s\' does not exist. \n\t Message: %s', str(level), str(message[:250]))
-
 
 
 

@@ -54,7 +54,7 @@ ENDPOINTS = {
 # URLS; Convention: all urls start in '/' but do not end in one
 URLS_BASE = {
     # Main base for all URLs
-    'base':                     'https://{endpoint}{url}?api_key={api_key}',
+    'base':                     'https://{endpoint}{url}?{params}',
 
     # Primary midpoints for all sub-apis
     'cmastery':                 '/lol/champion-mastery/{version}',
