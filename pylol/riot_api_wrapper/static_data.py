@@ -1,6 +1,8 @@
 from .utils import Session
 from . import constants as const
 
+import pandas as pd
+
 # Methods to access Static Data API
 # TODO: eventually add a timer to method calls here, with an option to override the timer --> will save api calls
 #		turn all of these 'get---' methods into properties, where the getter either retrieves recent data or just pulls from API
@@ -8,62 +10,89 @@ class StaticData(object):
 	version = const.VERSIONS['sdata']
 
 	@classmethod
-	def getChampions(cls, session):
+	def getChampions(cls, session, params={}):
 		session._log('Calling getChamps...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['champions'],
-			params = {
+			url_params = {
 				'version': 			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+
+		data = r['data']
+		data_frame = pd.DataFrame(data)
+		return data_frame.transpose()
+
+
 
 	@classmethod
-	def getChampion(cls, session, champion_id):
+	def getChampion(cls, session, champion_id, params={}):
 		session._log('Calling getChamp...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['by champion'],
-			params = {
+			url_params = {
 				'version':			cls.version,
 				'champion_id':		str(champion_id)
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+		
+		data_series = pd.Series(r)
+		return data_series
 
 	@classmethod
-	def getItems(cls, session):
+	def getItems(cls, session, params={}):
 		session._log('Calling getItems...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['items'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+
+		data = r['data']
+		data_frame = pd.DataFrame(data)
+		return data_frame.transpose()
 
 	@classmethod
-	def getItem(cls, session, item_id):
+	def getItem(cls, session, item_id, params={}):
 		session._log('Calling getItem...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['by item'],
-			params = {
+			url_params = {
 				'version':			cls.version,
 				'item_id':			str(item_id)
 			}
 		)
-		return r
+		r = session._request(url, params=params)
 
+		data_series = pd.Series(r)
+		return data_series
+
+# TODO: FIX THIS FOR ENCODING UTF-8
 	@classmethod
-	def getLanguageStrings(cls, sesion):
+	def getLanguageStrings(cls, session, params={}):
 		session._log('Calling getLangStrings...')
-		r = session._request(
-			url = const.URLS_SDATA['langauge strings'],
-			params = {
+		url = session._buildurl(
+			url = const.URLS_SDATA['language strings'],
+			url_params = {
 				'version':			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
 
+		data = r['data']
+		data_series = []
+		for d in data:
+			series = pd.Series(d)
+			series.str.encode('utf-8', errors='ignore')
+			data_series.append(series)
+		data_frame = pd.DataFrame(data_series)
+		return data_frame
+
+# TODO: FIX THIS FOR ENCODING UTF-8
 	@classmethod
 	def getSupportedLanguages(cls, session):
 		session._log('Calling getSuppLangs...')
@@ -76,71 +105,91 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getMaps(cls, session):
+	def getMaps(cls, session, params={}):
 		session._log('Calling getMaps...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['maps'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+
+		data = r['data']
+		data_frame = pd.DataFrame(data)
+		return data_frame.transpose()
 
 	@classmethod
-	def getMasteries(cls, session):
+	def getMasteries(cls, session, params={}):
 		session._log('Calling getMaps...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['masteries'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+		
+		data = r['data']
+		data_frame = pd.DataFrame(data)
+		return data_frame.transpose()
 
 	@classmethod
-	def getMastery(cls, session, mastery_id):
+	def getMastery(cls, session, mastery_id, params={}):
 		session._log('Calling getMastery...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['by mastery'],
-			params = {
+			url_params = {
 				'version':			cls.version,
 				'mastery_id':		str(mastery_id)
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+
+		data_series = pd.Series(r)
+		return data_series
 
 	@classmethod
-	def getIcons(cls, session):
+	def getIcons(cls, session, params={}):
 		session._log('Calling getIcons...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['profile icons'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+		
+		data = r['data']
+		data_frame = pd.DataFrame(data)
+		return data_frame.transpose()
 
 	@classmethod
-	def getRealms(cls,session):
+	def getRealms(cls,session, params={}):
 		session._log('Calling getRealms...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['realms'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+		data_series = pd.Series(r)
+		return data_series
 
 	@classmethod
-	def getReforgedPaths(cls, session):
+	def getReforgedPaths(cls, session, params={}):
 		session._log('Calling getRefPaths...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['rune paths'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+
+		data_frame = pd.DataFrame(r)
+		return data_frame
 
 	@classmethod
 	def getReforgedPath(cls, session, path_id):
@@ -201,46 +250,63 @@ class StaticData(object):
 		return r
 
 	@classmethod
-	def getSummonerSpells(cls, session):
+	def getSummonerSpells(cls, session, params={}):
 		session._log('Calling getSumSpells...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['summoner spells'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+
+		data = r['data']
+		data_frame = pd.DataFrame(data)
+		return data_frame.transpose()
+
 
 	@classmethod
-	def getSummonerSpell(cls, session, spell_id):
+	def getSummonerSpell(cls, session, spell_id, params={}):
 		session._log('Calling getSumSpells...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['by summoner spell'],
-			params = {
+			url_params = {
 				'version':			cls.version,
 				'spell_id':			str(spell_id)
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+
+		data_series = pd.Series(r)
+		return data_series
 
 	@classmethod
-	def getTarballLinks(cls, session):
+	def getTarballLinks(cls, session, params={}):
 		session._log('Calling getTarball...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['tarball links'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
+		r = session._request(url, params=params)
 		return r
 
 	@classmethod
-	def getVersions(cls, session):
+	def getVersions(cls, session, params={}):
 		session._log('Calling getVersions...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['versions'],
-			params= {
+			url_params= {
 				'version':			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+
+		data_series = pd.Series(r)
+		return data_series
+
+
+
+
+
