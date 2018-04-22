@@ -4,7 +4,7 @@ import pandas as pd
 
 
 
-class Game(object):
+class Match(object):
 
 
 
@@ -15,17 +15,17 @@ class Game(object):
 		self.timeline = None
 
 		self.match_params = {
-			'game_id':					self.game_id,
-			'season_id':		 		None,
-			'queue_id':			 		None,
-			'game_version':				None,
-			'platform_id':				None,
-			'game_mode':				None,
-			'map_id':					None,
-			'game_type':				None,
-			'game_duration':			None,
-			'game_creation':			None,
-			'frame_interval':			None
+			'game_id': self.game_id,
+			'season_id': None,
+			'queue_id': None,
+			'game_version': None,
+			'platform_id': None,
+			'game_mode': None,
+			'map_id': None,
+			'game_type': None, 
+			'game_duration': None,
+			'game_creation': None,
+			'frame_interval': None
 		}
 		self.teams = {}
 		self.bans = {}

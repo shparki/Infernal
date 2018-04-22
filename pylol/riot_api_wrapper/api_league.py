@@ -20,7 +20,11 @@ class League(object):
 			}
 		)
 		r = session._request(url, params=params)
-		return r
+		data_entries = pd.DataFrame(r['entries'])
+
+		r.pop('entries')
+		data_meta = pd.Series(r)
+		return data_entries, data_meta
 
 	@classmethod
 	def getLeague(cls, session, league_id, params={}):
@@ -33,7 +37,12 @@ class League(object):
 			}
 		)
 		r = session._request(url, params=params)
-		return r
+		data_entries = pd.DataFrame(r['entries'])
+
+		r.pop('entries')
+		data_meta = pd.Series(r)
+		return data_entries, data_meta
+
 
 	@classmethod
 	def getMasterLeague(cls, session, queue, params={}):
@@ -46,7 +55,11 @@ class League(object):
 			}
 		)
 		r = session._request(url, params=params)
-		return r
+		data_entries = pd.DataFrame(r['entries'])
+
+		r.pop('entries')
+		data_meta = pd.Series(r)
+		return data_entries, data_meta
 
 	@classmethod
 	def getSummonerLeague(cls, session, summoner_id, params={}):

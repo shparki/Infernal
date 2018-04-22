@@ -1,16 +1,17 @@
 from .utils import Session
+from . import constants as Const
 
-from .champion import Champion
-from .champion_mastery import ChampionMastery
-from .league import League
-from .match import Match
-from .spectator import Spectator
-from .static_data import StaticData
-from .status import Status
-from .summoner import Summoner
-from .third_party_code import ThirdPartyCode
-from .tournament import Tournament
-from .tournament_stub import TournamentStub
+from .api_champion import Champion
+from .api_champion_mastery import ChampionMastery
+from .api_league import League
+from .api_match import Match
+from .api_spectator import Spectator
+from .api_static_data import StaticData
+from .api_status import Status
+from .api_summoner import Summoner
+from .api_third_party_code import ThirdPartyCode
+from .api_tournament import Tournament
+from .api_tournament_stub import TournamentStub
 
 __all__ = [
 	'RiotAPIWrapper',

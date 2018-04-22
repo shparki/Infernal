@@ -10,15 +10,16 @@ class Match(object):
 	version = const.VERSIONS['match']
 
 	@classmethod
-	def getTournamentMatchIDs(cls, session, tournament_code):
+	def getTournamentMatchIDs(cls, session, tournament_code, params={}):
 		session._log('Calling getTournMatchIDs...')
-		r = sesion._request(
+		url = sesion._buildurl(
 			url = const.URLS_MATCH['matchID by tournament'],
-			params = {
+			url_params = {
 				'version':			cls.version,
 				'tournament_code':	str(tournament_code)
 			}
 		)
+		r = session._request(url, params=params)
 		return r
 
 	@classmethod
@@ -35,16 +36,17 @@ class Match(object):
 		return r
 
 	@classmethod
-	def getMatchByTournament(cls, session, match_id, tournament_code):
+	def getMatchByTournament(cls, session, match_id, tournament_code, params={}):
 		session._log('Calling getMatchByTournament...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_MATCH['by tournament'],
-			params = {
+			url_params = {
 				'version':			cls.version,
 				'match_id':			str(match_id),
 				'tournament_code':	str(tournament_code)
 			}
 		)
+		r = session._request(url, params=params)
 		return r
 
 	@classmethod

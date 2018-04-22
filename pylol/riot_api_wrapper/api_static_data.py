@@ -20,9 +20,10 @@ class StaticData(object):
 		)
 		r = session._request(url, params=params)
 
-		data = r['data']
-		data_frame = pd.DataFrame(data)
-		return data_frame.transpose()
+		data_entries = r.pop('data')
+		data_entries = pd.DataFrame(data_entries).transpose()
+		data_meta = pd.Series(r)
+		return data_entries, data_meta
 
 
 
@@ -52,9 +53,10 @@ class StaticData(object):
 		)
 		r = session._request(url, params=params)
 
-		data = r['data']
-		data_frame = pd.DataFrame(data)
-		return data_frame.transpose()
+		data_entries = r.pop('data')
+		data_entries = pd.DataFrame(data_entries).transpose()
+		data_meta = pd.Series(r)
+		return data_entries, data_meta
 
 	@classmethod
 	def getItem(cls, session, item_id, params={}):
@@ -71,7 +73,7 @@ class StaticData(object):
 		data_series = pd.Series(r)
 		return data_series
 
-# TODO: FIX THIS FOR ENCODING UTF-8
+
 	@classmethod
 	def getLanguageStrings(cls, session, params={}):
 		session._log('Calling getLangStrings...')
@@ -83,26 +85,23 @@ class StaticData(object):
 		)
 		r = session._request(url, params=params)
 
-		data = r['data']
-		data_series = []
-		for d in data:
-			series = pd.Series(d)
-			series.str.encode('utf-8', errors='ignore')
-			data_series.append(series)
-		data_frame = pd.DataFrame(data_series)
-		return data_frame
+		data_entries = r.pop('data')
+		data_entries = pd.Series(data_entries)
+		data_meta = pd.Series(r)
+		return data_entries, data_meta
 
-# TODO: FIX THIS FOR ENCODING UTF-8
 	@classmethod
-	def getSupportedLanguages(cls, session):
+	def getSupportedLanguages(cls, session, params={}):
 		session._log('Calling getSuppLangs...')
-		r = session._request(
-			url = const.URLS_SDATA['supported langauges'],
-			params = {
+		url = session._buildurl(
+			url = const.URLS_SDATA['supported languages'],
+			url_params = {
 				'version':			cls.version
 			}
 		)
-		return r
+		r = session._request(url, params=params)
+		data = pd.Series(r)
+		return data
 
 	@classmethod
 	def getMaps(cls, session, params={}):
@@ -115,9 +114,25 @@ class StaticData(object):
 		)
 		r = session._request(url, params=params)
 
-		data = r['data']
-		data_frame = pd.DataFrame(data)
-		return data_frame.transpose()
+		images = {}
+		data_entries = r.pop('data')
+		for key, value in data_entries.items():
+			images[key] = value['image']
+			value.pop('image')
+		image_frame = pd.DataFrame(images).transpose()
+		image_frame = image_frame.rename(columns={
+											'full': 'image_full',
+											'group': 'image_group',
+											'h': 'image_h',
+											'sprite': 'image_sprite',
+											'w': 'image_w',
+											'x': 'image_x',
+											'y': 'image_y'
+										})
+		data_entries = pd.DataFrame(data_entries).transpose()
+		data_entries = pd.concat([data_entries, image_frame], axis=1)
+		data_meta = pd.Series(r)
+		return data_entries, data_meta
 
 	@classmethod
 	def getMasteries(cls, session, params={}):
@@ -130,9 +145,10 @@ class StaticData(object):
 		)
 		r = session._request(url, params=params)
 		
-		data = r['data']
-		data_frame = pd.DataFrame(data)
-		return data_frame.transpose()
+		data_entries = r.pop('data')
+		data_entries = pd.DataFrame(data_entries).transpose()
+		data_meta = pd.Series(r)
+		return data_entries, data_meta
 
 	@classmethod
 	def getMastery(cls, session, mastery_id, params={}):
@@ -160,9 +176,26 @@ class StaticData(object):
 		)
 		r = session._request(url, params=params)
 		
-		data = r['data']
-		data_frame = pd.DataFrame(data)
-		return data_frame.transpose()
+		images = {}
+		data_entries = r.pop('data')
+		for key, value in data_entries.items():
+			images[key] = value['image']
+			value.pop('image')
+		images_frame = pd.DataFrame(images).transpose()
+		images_frame = images_frame.rename(columns={
+											'full': 'image_full',
+											'group': 'image_group',
+											'h': 'image_h',
+											'sprite': 'image_sprite',
+											'w': 'image_w',
+											'x': 'image_x',
+											'y': 'image_y'
+										})
+		data_entries = pd.DataFrame(data_entries).transpose()
+		data_entries = pd.concat([data_entries, images_frame], axis=1)
+		data_entries = data_entries.set_index('id')
+		data_meta = pd.Series(r)
+		return data_entries, data_meta
 
 	@classmethod
 	def getRealms(cls,session, params={}):
@@ -174,7 +207,11 @@ class StaticData(object):
 			}
 		)
 		r = session._request(url, params=params)
+		n = r['n']
+		n = pd.Series(n)
+		r.pop('n')
 		data_series = pd.Series(r)
+		data_series = pd.concat([data_series, n])
 		return data_series
 
 	@classmethod

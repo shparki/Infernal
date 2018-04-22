@@ -5,9 +5,16 @@ import os
 import logging
 import csv
 
+import pandas as pd
+
+
+
+
 #eventually make available to change in pylol.cfg
 DATA_PATH = os.getcwd() + '/data'
 LOGS_PATH = os.getcwd() + '/logs'
+
+
 
 class default_dict(dict):
 	def __missing__(self, key):
