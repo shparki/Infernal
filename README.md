@@ -1,3 +1,6 @@
+![alt text](https://github.com/shparki/Logistic-Analysis-for-LoL/blob/dev_1.0/wiki/infernal_v1.png)
+
+
 # Logistic-Analysis-for-LoL
 ##A Logistic Regression Analysis of Win/Loss Conditions for Single League Matches
 
