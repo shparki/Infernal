@@ -6,6 +6,9 @@ import logging
 import csv
 
 import pandas as pd
+import queue
+import threading
+import time
 
 
 
@@ -19,6 +22,11 @@ LOGS_PATH = os.getcwd() + '/logs'
 class default_dict(dict):
 	def __missing__(self, key):
 		return '{' + key + '}'
+
+class RequestItem(object):
+	def __init__(self, url, params={}):
+		self.url = url
+		self.params = params
 
 class Session(object):
 
@@ -56,50 +64,34 @@ class Session(object):
 
 		self._log('Initialized ' + str(self))
 
+		self.running = False
+		self.queue = queue.Queue()
+		self.thread = threading.Thread(
+			target = self.run,
+			name = 'thread_{}'.format(self.uid)
+		)
 
+	def run(self):
+		while self.running:
+			print('hi I am running')
+			time.sleep(1)
+
+	
+	def start(self):
+		self.running = True
+		self.thread.start()
+
+	def pause(self):
+		pass
+
+	def stop(self):
+		self.running = False
 
 
 	def __str__(self):
 		return 'session_{}'.format(self.uid)
 
 
-
-
-
-
-	# Basic requst handler, will be split per-API afer
-	# def _request(self, url, url_params={}, params={}):
-		
-	# 	param_string = ''
-	# 	params['api_key'] = self.api_key
-	# 	if len(params) > 1:
-	# 		pass
-	# 	else:
-	# 		param_string += str(list(params.keys())[0] + '=' + list(params.values())[0])
-
-
-	# 	args = {
-	# 		'endpoint': const.ENDPOINTS[self.endpoint],
-	# 		'url':		url,
-	# 		'params':	param_string
-	# 	}
-	# 	req_url = const.URLS_BASE['base'].format_map(
-	# 		default_dict(**args))
-
-	# 	req_url = req_url.format_map(
-	# 		default_dict(**url_params))
-
-
-	# 	self._log('Requesting...')
-	# 	self._log('URL: ' + str(req_url))
-
-	# 	req = requests.get(req_url)
-
-	# 	self._log('RESPONSE CODE: ' + str(req.status_code))
-	# 	self._log('RESPONSE: ' + str(req.json()))
-	# 	self._log('Done!')
-
-	# 	return req.json()
 
 	def _buildurl (self, url, url_params = {}):
 		args = {
@@ -115,6 +107,8 @@ class Session(object):
 		return req_url
 
 	def _request(self, url, params = {}):
+		
+
 		param_string = ''
 		for key, value in params.items():
 			param_string += (str(key) + '=' + str(value) + '&')
@@ -131,6 +125,9 @@ class Session(object):
 		self._log('Done!')
 
 		return req.json()
+
+	def request(self, url, params={}):
+		pass
 
 
 
