@@ -40,4 +40,7 @@ class Spectator(object):
 			parti['participants'] = pd.DataFrame(parti['participants'])
 		data_entries = pd.DataFrame(game_list)
 
-		return data_entries, data_meta
+		for key, value in data_meta.iteritems():
+			data_entries[key] = value
+
+		return data_entries

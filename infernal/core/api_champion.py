@@ -4,14 +4,12 @@ from . import constants as const
 import pandas as pd
 
 
-
-
 class Champion(object):
 	version = const.VERSIONS['champion']
 
 
 	@classmethod
-	def getChampions(cls, session, params={}):
+	def getChampions(cls, session, params={}, meta=False):
 		session._log('Calling getChamps...')
 		url = session._buildurl(
 			url = const.URLS_CHAMPION['all'],
@@ -22,11 +20,11 @@ class Champion(object):
 		r = session._request(url, params = params)
 
 		data = r['champions']
-		data_series = []
-		for d in data:
-			data_series.append(pd.Series(d))
-		data_frame = pd.DataFrame(data_series)
-		return data_frame
+		df = pd.DataFrame(data)
+		df = df.set_index('id')
+		df = df.sort_index()
+
+		return df
 
 
 	@classmethod
@@ -41,5 +39,8 @@ class Champion(object):
 		)
 		r = session._request(url, params = params)
 
-		data_series = pd.Series(r)
-		return data_series
+		ds = pd.Series(r)
+		
+		return ds
+
+

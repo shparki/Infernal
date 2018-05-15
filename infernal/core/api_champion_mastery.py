@@ -21,11 +21,12 @@ class ChampionMastery(object):
 		)
 		r = session._request(url, params = params)
 
-		data_series = []
-		for d in r:
-			data_series.append(pd.Series(d))
-		data_frame = pd.DataFrame(data_series)
-		return data_frame
+		df = pd.DataFrame(r)
+		df.lastPlayTime = df.lastPlayTime.astype('datetime64[ms]')
+		df = df.set_index('championId')
+		df = df.sort_index()
+
+		return df
 
 	@classmethod
 	def getMasteryByChampion(cls, session, summoner_id, champion_id, params={}):
@@ -55,5 +56,4 @@ class ChampionMastery(object):
 		)
 		r = session._request(url, params=params)
 
-		data_series = pd.Series(r, index=['total_mastery'])
-		return data_series
+		return r

@@ -20,11 +20,15 @@ class League(object):
 			}
 		)
 		r = session._request(url, params=params)
-		data_entries = pd.DataFrame(r['entries'])
+		df = pd.DataFrame(r['entries'])
 
 		r.pop('entries')
 		data_meta = pd.Series(r)
-		return data_entries, data_meta
+
+		for key, value in data_meta.iteritems():
+			df[key] = value
+
+		return df
 
 	@classmethod
 	def getLeague(cls, session, league_id, params={}):
@@ -37,11 +41,15 @@ class League(object):
 			}
 		)
 		r = session._request(url, params=params)
-		data_entries = pd.DataFrame(r['entries'])
+		df = pd.DataFrame(r['entries'])
 
 		r.pop('entries')
 		data_meta = pd.Series(r)
-		return data_entries, data_meta
+
+		for key, value in data_meta.iteritems():
+			df[key] = value
+
+		return df
 
 
 	@classmethod
@@ -55,11 +63,15 @@ class League(object):
 			}
 		)
 		r = session._request(url, params=params)
-		data_entries = pd.DataFrame(r['entries'])
+		df = pd.DataFrame(r['entries'])
 
 		r.pop('entries')
 		data_meta = pd.Series(r)
-		return data_entries, data_meta
+
+		for key, value in data_meta.iteritems():
+			df[key] = value
+
+		return df
 
 	@classmethod
 	def getSummonerLeague(cls, session, summoner_id, params={}):

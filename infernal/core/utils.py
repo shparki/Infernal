@@ -11,11 +11,11 @@ import threading
 import time
 
 
-
-
 #eventually make available to change in pylol.cfg
 DATA_PATH = os.getcwd() + '/data'
 LOGS_PATH = os.getcwd() + '/logs'
+
+
 
 
 
@@ -63,29 +63,6 @@ class Session(object):
 		)
 
 		self._log('Initialized ' + str(self))
-
-		self.running = False
-		self.queue = queue.Queue()
-		self.thread = threading.Thread(
-			target = self.run,
-			name = 'thread_{}'.format(self.uid)
-		)
-
-	def run(self):
-		while self.running:
-			print('hi I am running')
-			time.sleep(1)
-
-	
-	def start(self):
-		self.running = True
-		self.thread.start()
-
-	def pause(self):
-		pass
-
-	def stop(self):
-		self.running = False
 
 
 	def __str__(self):

@@ -1,4 +1,4 @@
-from . import riot_api_wrapper as raw
+from . import core
 
 import pandas as pd
 
@@ -15,17 +15,17 @@ class Match(object):
 		self.timeline = None
 
 		self.match_params = {
-			'game_id': self.game_id,
-			'season_id': None,
-			'queue_id': None,
-			'game_version': None,
-			'platform_id': None,
-			'game_mode': None,
-			'map_id': None,
-			'game_type': None, 
-			'game_duration': None,
-			'game_creation': None,
-			'frame_interval': None
+			'gameId': self.game_id,
+			'seasonId': None,
+			'queueId': None,
+			'gameVersion': None,
+			'platformId': None,
+			'gameMode': None,
+			'mapId': None,
+			'gameType': None, 
+			'gameDuration': None,
+			'gameCreation': None,
+			'frameInterval': None
 		}
 		self.teams = {}
 		self.bans = {}
@@ -40,19 +40,19 @@ class Match(object):
 
 
 	def initialize(self, session):
-		self.match = raw.Match.getMatch(session, self.game_id)
-		self.timeline = raw.Match.getTimeline(session, self.game_id)
+		self.match = core.Match.getMatch(session, self.game_id)
+		self.timeline = core.Match.getTimeline(session, self.game_id)
 
-		self.match_params['season_id'] = self.match['seasonId']
-		self.match_params['queue_id'] = self.match['queueId']
-		self.match_params['game_version'] = self.match['gameVersion']
-		self.match_params['platform_id'] = self.match['platformId']
-		self.match_params['game_mode'] = self.match['gameMode']
-		self.match_params['map_id'] = self.match['mapId']
-		self.match_params['game_type'] = self.match['gameType']
-		self.match_params['game_duration'] = self.match['gameDuration']
-		self.match_params['game_creation'] = self.match['gameCreation']
-		self.match_params['frame_interval'] = self.timeline['frameInterval']
+		self.match_params['seasonId'] = self.match['seasonId']
+		self.match_params['queueId'] = self.match['queueId']
+		self.match_params['gameVersion'] = self.match['gameVersion']
+		self.match_params['platformId'] = self.match['platformId']
+		self.match_params['gameMode'] = self.match['gameMode']
+		self.match_params['mapId'] = self.match['mapId']
+		self.match_params['gameType'] = self.match['gameType']
+		self.match_params['gameDuration'] = self.match['gameDuration']
+		self.match_params['gameCreation'] = self.match['gameCreation']
+		self.match_params['frameInterval'] = self.timeline['frameInterval']
 		self.match_params = pd.Series(self.match_params)
 
 
@@ -106,6 +106,3 @@ class Match(object):
 		self.events = self.events.set_index('timestamp')
 		self.participant_frames = pd.DataFrame(self.participant_frames).transpose()
 		self.participant_frames = self.participant_frames.set_index('timestamp')
-
-
-
