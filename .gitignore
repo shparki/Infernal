@@ -8,3 +8,6 @@ tests/
 # setup folders
 dist/
 infernal.egg-info/
+
+# other
+.DS_Store
