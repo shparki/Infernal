@@ -23,11 +23,6 @@ class default_dict(dict):
 	def __missing__(self, key):
 		return '{' + key + '}'
 
-class RequestItem(object):
-	def __init__(self, url, params={}):
-		self.url = url
-		self.params = params
-
 class Session(object):
 
 	def __init__ (self, api_key, endpoint='na-old'):
@@ -64,13 +59,16 @@ class Session(object):
 
 		self._log('Initialized ' + str(self))
 
+		self.request_rate = 0.5
+		self.request_throttle = 1.1
+
 
 	def __str__(self):
 		return 'session_{}'.format(self.uid)
 
 
 
-	def _buildurl (self, url, url_params = {}):
+	def build_url (self, url, url_params = {}):
 		args = {
 			'endpoint':	const.ENDPOINTS[self.endpoint],
 			'url':		url
@@ -104,7 +102,10 @@ class Session(object):
 		return req.json()
 
 	def request(self, url, params={}):
-		pass
+		time.sleep(self.request_rate * self.request_throttle)
+		jsn = self._request(url=url, params=params)
+		return jsn
+
 
 
 

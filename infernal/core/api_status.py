@@ -8,11 +8,11 @@ class Status(object):
 	@classmethod
 	def getStatus(cls, session, params={}):
 		session._log('Calling getStatus...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_STATUS['status'],
 			url_params = {
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		r = session.request(url, params=params)
 		return r

@@ -12,33 +12,33 @@ class Match(object):
 	@classmethod
 	def getTournamentMatchIDs(cls, session, tournament_code, params={}):
 		session._log('Calling getTournMatchIDs...')
-		url = sesion._buildurl(
+		url = sesion.build_url(
 			url = const.URLS_MATCH['matchID by tournament'],
 			url_params = {
 				'version':			cls.version,
 				'tournament_code':	str(tournament_code)
 			}
 		)
-		r = session._request(url, params=params)
+		r = session.request(url, params=params)
 		return r
 
 	@classmethod
 	def getMatch(cls, session, match_id, params={}):
 		session._log('Calling getMatch...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_MATCH['by match'],
 			url_params = {
 				'version':			cls.version,
 				'match_id':			str(match_id)
 			}
 		)
-		r = session._request(url, params=params)
+		r = session.request(url, params=params)
 		return r
 
 	@classmethod
 	def getMatchByTournament(cls, session, match_id, tournament_code, params={}):
 		session._log('Calling getMatchByTournament...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_MATCH['by tournament'],
 			url_params = {
 				'version':			cls.version,
@@ -46,20 +46,20 @@ class Match(object):
 				'tournament_code':	str(tournament_code)
 			}
 		)
-		r = session._request(url, params=params)
+		r = session.request(url, params=params)
 		return r
 
 	@classmethod
 	def getMatches(cls, session, account_id, params={}):
 		session._log('Calling getMatches...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_MATCH['by account'],
 			url_params = {
 				'version':			cls.version,
 				'account_id':		str(account_id)
 			}
 		)
-		r = session._request(url, params=params)
+		r = session.request(url, params=params)
 		matches = r['matches']
 		startindex = r['startIndex']
 		endindex = r['endIndex']
@@ -73,14 +73,14 @@ class Match(object):
 	@classmethod
 	def getRecent(cls, session, account_id, params={}):
 		session._log('Calling getRecent...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_MATCH['recent by account'],
 			url_params = {
 				'version':			cls.version,
 				'account_id':		str(account_id)
 			}
 		)
-		r = session._request(url, params=params)
+		r = session.request(url, params=params)
 		matches = r['matches']
 		startindex = r['startIndex']
 		endindex = r['endIndex']
@@ -96,14 +96,14 @@ class Match(object):
 	@classmethod
 	def getTimeline(cls, session, match_id, params={}):
 		session._log('Calling getTimeline...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_MATCH['timeline'],
 			url_params = {
 				'version':			cls.version,
 				'match_id':			str(match_id)
 			}
 		)
-		r = session._request(url, params=params)
+		r = session.request(url, params=params)
 		return r
 
 

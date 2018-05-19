@@ -11,26 +11,26 @@ class Spectator(object):
 	@classmethod
 	def getActive(cls, session, summoner_id, params={}):
 		session._log('Calling getActive...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SPECT['active'],
 			url_params = {
 				'version':			cls.version,
 				'summoner_id':		str(summoner_id)
 			}
 		)
-		r = session._request(url, params=params)
+		r = session.request(url, params=params)
 		return r
 
 	@classmethod
 	def getFeatured(cls, session, params={}):
 		session._log('Calling getFeatured...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SPECT['featured'],
 			url_params = {
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		r = session.request(url, params=params)
 		game_list = r.pop('gameList')
 		data_meta = pd.Series(r)
 
