@@ -1,5 +1,6 @@
-from .utils import Session
-from . import constants as const
+from ..core import Session
+from ..core import constants as const
+from ..core.infernal_error import RequestError
 
 import pandas as pd
 
@@ -18,7 +19,16 @@ class Spectator(object):
 				'summoner_id':		str(summoner_id)
 			}
 		)
-		r = session.request(url, params=params)
+
+		try:
+			r = session.request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.nan
+		except Exception as e:
+			print(e)
+			return pd.nan
+
 		return r
 
 	@classmethod
@@ -30,7 +40,16 @@ class Spectator(object):
 				'version':			cls.version
 			}
 		)
-		r = session.request(url, params=params)
+
+		try:
+			r = session.request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.DataFrame()
+		except Exception as e:
+			print(e)
+			return pd.DataFrame()
+
 		game_list = r.pop('gameList')
 		data_meta = pd.Series(r)
 

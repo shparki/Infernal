@@ -1,5 +1,6 @@
-from .utils import Session
-from . import constants as const
+from ..core import Session
+from ..core import constants as const
+from ..core.infernal_error import RequestError
 
 import pandas as pd
 
@@ -19,7 +20,15 @@ class ChampionMastery(object):
 				'summoner_id': 		str(summoner_id)
 			}
 		)
-		r = session.request(url, params = params)
+
+		try:
+			r = session.request(url, params = params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.DataFrame()
+		except Exception as e:
+			print(E)
+			return pd.DataFrame()
 
 		df = pd.DataFrame(r)
 		df.lastPlayTime = df.lastPlayTime.astype('datetime64[ms]')
@@ -39,7 +48,15 @@ class ChampionMastery(object):
 				'champion_id': 		str(champion_id)
 			}
 		)
-		r = session.request(url, params=params)
+
+		try:
+			r = session.request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 
 		data_series = pd.Series(r)
 		return data_series
@@ -54,6 +71,17 @@ class ChampionMastery(object):
 				'summoner_id': 		str(summoner_id)
 			}
 		)
-		r = session.request(url, params=params)
+		
+		try:
+			r = session.request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.nan
+		except Exception as e:
+			print(e)
+			return pd.nan
 
 		return r
+
+
+

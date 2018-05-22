@@ -1,5 +1,7 @@
-from .utils import Session
-from . import constants as const
+from ..core import Session
+from ..core import constants as const
+
+import pandas as pd
 
 # Methods to access Status API
 class Status(object):
@@ -14,5 +16,14 @@ class Status(object):
 				'version':			cls.version
 			}
 		)
-		r = session.request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.nan
+		except Exception as e:
+			print(e)
+			return pd.nan
+		
 		return r

@@ -1,5 +1,5 @@
-from .utils import Session
-from . import constants as const
+from ..core import Session
+from ..core import constants as const
 
 import pandas as pd
 
@@ -19,9 +19,19 @@ class Summoner(object):
 				'account_id':		str(account_id)
 			}
 		)
-		r = session.request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 		
 		data_series = pd.Series(r)
+		data_series = data_series.rename(data_series['name'])
+		
 		return data_series
 
 	@classmethod
@@ -34,9 +44,18 @@ class Summoner(object):
 				'summoner_name':	str(summoner_name)
 			}
 		)
-		r = session.request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 
 		data_series = pd.Series(r)
+		data_series = data_series.rename(data_series['name'])
 		return data_series
 
 	@classmethod
@@ -49,7 +68,18 @@ class Summoner(object):
 				'summoner_id':		str(summoner_id)
 			}
 		)
-		r = session.request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 		
 		data_series = pd.Series(r)
+		data_series = data_series.rename(data_series['name'])
 		return data_series
+
+		

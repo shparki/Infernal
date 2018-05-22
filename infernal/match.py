@@ -1,4 +1,5 @@
 from . import core
+from . import riot_api_wrapper as raw
 
 import pandas as pd
 
@@ -40,8 +41,8 @@ class Match(object):
 
 
 	def initialize(self, session):
-		self.match = core.Match.getMatch(session, self.game_id)
-		self.timeline = core.Match.getTimeline(session, self.game_id)
+		self.match = raw.Match.getMatch(session, self.game_id)
+		self.timeline = raw.Match.getTimeline(session, self.game_id)
 
 		self.match_params['seasonId'] = self.match['seasonId']
 		self.match_params['queueId'] = self.match['queueId']

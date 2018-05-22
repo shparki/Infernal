@@ -1,5 +1,6 @@
-from .utils import Session
-from . import constants as const
+from ..core import Session
+from ..core import constants as const
+from ..core.infernal_error import RequestError
 
 import pandas as pd
 
@@ -18,7 +19,15 @@ class StaticData(object):
 				'version': 			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 
 		data_entries = r.pop('data')
 		data_entries = pd.DataFrame(data_entries).transpose()
@@ -37,7 +46,15 @@ class StaticData(object):
 				'champion_id':		str(champion_id)
 			}
 		)
-		r = session._request(url, params=params)
+
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 		
 		data_series = pd.Series(r)
 		return data_series
@@ -51,7 +68,15 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.DataFrame(), pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.DataFrame(), pd.Series()
 
 		data_entries = r.pop('data')
 		data_entries = pd.DataFrame(data_entries).transpose()
@@ -68,7 +93,15 @@ class StaticData(object):
 				'item_id':			str(item_id)
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 
 		data_series = pd.Series(r)
 		return data_series
@@ -83,7 +116,15 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.DataFrame(), pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.DataFrame(), pd.Series()
 
 		data_entries = r.pop('data')
 		data_entries = pd.Series(data_entries)
@@ -99,7 +140,16 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
+
 		data = pd.Series(r)
 		return data
 
@@ -112,7 +162,15 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.DataFrame(), pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.DataFrame(), pd.Series()
 
 		images = {}
 		data_entries = r.pop('data')
@@ -143,7 +201,15 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.DataFrame(), pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.DataFrame(), pd.Series()
 		
 		data_entries = r.pop('data')
 		data_entries = pd.DataFrame(data_entries).transpose()
@@ -160,7 +226,15 @@ class StaticData(object):
 				'mastery_id':		str(mastery_id)
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 
 		data_series = pd.Series(r)
 		return data_series
@@ -174,7 +248,15 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.DataFrame(), pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.DataFrame(), pd.Series()
 		
 		images = {}
 		data_entries = r.pop('data')
@@ -206,7 +288,16 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
+
 		n = r['n']
 		n = pd.Series(n)
 		r.pop('n')
@@ -223,7 +314,15 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.DataFrame()
+		except Exception as e:
+			print(e)
+			return pd.DataFrame()
 
 		data_frame = pd.DataFrame(r)
 		return data_frame
@@ -231,59 +330,109 @@ class StaticData(object):
 	@classmethod
 	def getReforgedPath(cls, session, path_id):
 		session._log('Calling getRefPaths...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['by rune path'],
-			params = {
+			url_params = {
 				'version':			cls.version,
 				'path_id':			str(path_id)
 			}
 		)
+
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.nan
+		except Exception as e:
+			print(e)
+			return pd.nan
+
 		return r
 
 	@classmethod
 	def getReforgedRunes(cls, session):
 		session._log('Calling getRefRunes...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['reforged runes'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
+
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.nan
+		except Exception as e:
+			print(e)
+			return pd.nan
+
 		return r
 
 	@classmethod
 	def getReforgedRune(cls, session, rune_id):
 		session._log('Calling getRefRunes...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['by reforged rune'],
-			params = {
+			url_params = {
 				'version':			cls.version,
 				'rune_id':			str(rune_id)
 			}
 		)
+
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.nan
+		except Exception as e:
+			print(e)
+			return pd.nan
+
 		return r
 
 	@classmethod
 	def getRunes(cls, session):
 		session._log('Calling getRunes...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['runes'],
-			params = {
+			url_params = {
 				'version':			cls.version
 			}
 		)
+
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.nan
+		except Exception as e:
+			print(e)
+			return pd.nan
+
 		return r
 
 	@classmethod
 	def getRune(cls, session, rune_id):
 		session._log('Calling getRune...')
-		r = session._request(
+		url = session._buildurl(
 			url = const.URLS_SDATA['by rune'],
-			params = {
+			url_params = {
 				'version':			cls.version,
 				'rune_id':			str(rune_id)
 			}
 		)
+
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.nan
+		except Exception as e:
+			print(e)
+			return pd.nan
+
 		return r
 
 	@classmethod
@@ -295,7 +444,15 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.DataFrame()
+		except Exception as e:
+			print(e)
+			return pd.DataFrame()
 
 		data = r['data']
 		data_frame = pd.DataFrame(data)
@@ -312,7 +469,15 @@ class StaticData(object):
 				'spell_id':			str(spell_id)
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 
 		data_series = pd.Series(r)
 		return data_series
@@ -326,7 +491,16 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.nan
+		except Exception as e:
+			print(e)
+			return pd.nan
+
 		return r
 
 	@classmethod
@@ -338,7 +512,15 @@ class StaticData(object):
 				'version':			cls.version
 			}
 		)
-		r = session._request(url, params=params)
+		
+		try:
+			r = session._request(url, params=params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 
 		data_series = pd.Series(r)
 		return data_series

@@ -1,5 +1,6 @@
-from .utils import Session
-from . import constants as const
+from ..core import Session
+from ..core import constants as const
+from ..core.infernal_error import RequestError
 
 import pandas as pd
 
@@ -9,7 +10,7 @@ class Champion(object):
 
 
 	@classmethod
-	def getChampions(cls, session, params={}, meta=False):
+	def getChampions(cls, session, params={}):
 		session._log('Calling getChamps...')
 		url = session.build_url(
 			url = const.URLS_CHAMPION['all'],
@@ -17,7 +18,15 @@ class Champion(object):
 				'version':			cls.version
 			}
 		)
-		r = session.request(url, params = params)
+
+		try:
+			r = session.request(url, params = params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.DataFrame()
+		except Exception as e:
+			print(e)
+			return pd.DataFrame()
 
 		data = r['champions']
 		df = pd.DataFrame(data)
@@ -37,7 +46,15 @@ class Champion(object):
 				'champion_id':		str(champion_id)
 			}
 		)
-		r = session.request(url, params = params)
+		
+		try:
+			r = session.request(url, params = params)
+		except RequestError as req_err:
+			print(req_err)
+			return pd.Series()
+		except Exception as e:
+			print(e)
+			return pd.Series()
 
 		ds = pd.Series(r)
 		
