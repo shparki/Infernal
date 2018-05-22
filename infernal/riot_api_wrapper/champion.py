@@ -11,6 +11,21 @@ class Champion(object):
 
 	@classmethod
 	def getChampions(cls, session, params={}):
+		"""Fetches all Champions
+		
+		Fetches information regarding all champions in League of Legends
+
+		Args:
+		    session: This is the first param.
+		    params: This is a second param.
+
+		Returns:
+		    This is a description of what is returned.
+
+		Raises:
+		    KeyError: Raises an exception.
+		"""
+
 		session._log('Calling getChamps...')
 		url = session.build_url(
 			url = const.URLS_CHAMPION['all'],

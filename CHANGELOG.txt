@@ -1,15 +1,38 @@
+[Template]
+<Date>		- <List of day's changes to project>
+
+			TODO:
+				[_] <List of TODO items left from day's changes>
+			Questions:
+				- <List of lingering questions raised from the day's changes>
+================================================================================
+
 5/21/2018: 	- Added CHANGELOG.md (FINALLY!)
 			- Exception handling (did not search for bugs- testing required)
-			- Updated StaticData, ThirdPartCode, Tournament, TournamentStub requests to follow new format (_buildurl then _request)
+			- Updated StaticData, ThirdPartCode, Tournament, TournamentStub
+				requests to follow new format (_buildurl then _request)
 			- Raised exceptions are now logged
 
 			TODO:
-				- Check for errors in exception handling for requests
-				- Add specific error code handling for each method
-				- Exception logging
-				- Update StaticData, ThirdPartCode, Tournament, TournamentStub data structures for runes & rune paths (updated and old)	
-				- change _log to something more accessible
+				[_] Check for errors in exception handling for requests
+				[_] Add specific error code handling for each method
+				[_] Exception logging
+				[_] Update StaticData, ThirdPartCode, Tournament, TournamentStub
+					data structures for runes & rune paths (updated and old)	
+				[_] change _log to something more accessible
 			Questions:
-				- Is there a better method to handle the brute-force way of handling RequestError in all api methods?
+				- Is there a better method to handle the brute-force way of
+					handling RequestError in all api methods?
 				- Find a way to concat _buidurl and _request
 				- Do away with raised exception print statements?
+
+5/22/2018:	- Begain adding docstrings to methods (Champions). Using Google
+				style docstrings.
+
+			TODO:
+				[_] Change params argument in every api method to **kwargs that 
+					will accept a variable length key: value paired entries. 
+					Convert to dict, then pass into the request as the expected
+					dict of key-value pairs
+
+
