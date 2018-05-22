@@ -25,9 +25,11 @@ class League(object):
 			r = session.request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.DataFrame()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.DataFrame()
 
 
@@ -56,9 +58,11 @@ class League(object):
 			r = session.request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 
 
@@ -88,9 +92,11 @@ class League(object):
 			r = session.request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.DataFrame()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.DataFrame()
 
 		df = pd.DataFrame(r['entries'])
@@ -118,9 +124,11 @@ class League(object):
 			r = session.request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 
 		data_series = pd.Series(r[0])

@@ -21,9 +21,11 @@ class Status(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.nan
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.nan
 		
 		return r

@@ -25,9 +25,11 @@ class ChampionMastery(object):
 			r = session.request(url, params = params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.DataFrame()
 		except Exception as e:
-			print(E)
+			print(e)
+			session._log(e, level='error')
 			return pd.DataFrame()
 
 		df = pd.DataFrame(r)
@@ -53,9 +55,11 @@ class ChampionMastery(object):
 			r = session.request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 
 		data_series = pd.Series(r)
@@ -76,9 +80,11 @@ class ChampionMastery(object):
 			r = session.request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.nan
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.nan
 
 		return r

@@ -24,9 +24,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 
 		data_entries = r.pop('data')
@@ -51,9 +53,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 		
 		data_series = pd.Series(r)
@@ -73,9 +77,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.DataFrame(), pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.DataFrame(), pd.Series()
 
 		data_entries = r.pop('data')
@@ -98,9 +104,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 
 		data_series = pd.Series(r)
@@ -121,9 +129,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.DataFrame(), pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.DataFrame(), pd.Series()
 
 		data_entries = r.pop('data')
@@ -145,9 +155,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 
 		data = pd.Series(r)
@@ -167,9 +179,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.DataFrame(), pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.DataFrame(), pd.Series()
 
 		images = {}
@@ -206,9 +220,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.DataFrame(), pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.DataFrame(), pd.Series()
 		
 		data_entries = r.pop('data')
@@ -231,9 +247,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 
 		data_series = pd.Series(r)
@@ -253,9 +271,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.DataFrame(), pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.DataFrame(), pd.Series()
 		
 		images = {}
@@ -293,9 +313,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 
 		n = r['n']
@@ -319,9 +341,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.DataFrame()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.DataFrame()
 
 		data_frame = pd.DataFrame(r)
@@ -342,9 +366,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.nan
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.nan
 
 		return r
@@ -363,9 +389,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.nan
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.nan
 
 		return r
@@ -385,9 +413,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.nan
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.nan
 
 		return r
@@ -406,9 +436,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.nan
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.nan
 
 		return r
@@ -428,9 +460,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.nan
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.nan
 
 		return r
@@ -449,9 +483,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.DataFrame()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.DataFrame()
 
 		data = r['data']
@@ -474,9 +510,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 
 		data_series = pd.Series(r)
@@ -496,9 +534,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.nan
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.nan
 
 		return r
@@ -517,9 +557,11 @@ class StaticData(object):
 			r = session._request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
+			session._log(req_err, level='error')
 			return pd.Series()
 		except Exception as e:
 			print(e)
+			session._log(e, level='error')
 			return pd.Series()
 
 		data_series = pd.Series(r)
