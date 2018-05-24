@@ -21,7 +21,7 @@ class Summoner(object):
 		)
 		
 		try:
-			r = session._request(url, params=params)
+			r = session.request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
 			session._log(req_err, level='error')
@@ -48,7 +48,7 @@ class Summoner(object):
 		)
 		
 		try:
-			r = session._request(url, params=params)
+			r = session.request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
 			session._log(req_err, level='error')
@@ -57,6 +57,8 @@ class Summoner(object):
 			print(e)
 			session._log(e, level='error')
 			return pd.Series()
+
+		print(r)
 
 		data_series = pd.Series(r)
 		data_series = data_series.rename(data_series['name'])
@@ -74,7 +76,7 @@ class Summoner(object):
 		)
 		
 		try:
-			r = session._request(url, params=params)
+			r = session.request(url, params=params)
 		except RequestError as req_err:
 			print(req_err)
 			session._log(req_err, level='error')

@@ -7,7 +7,7 @@ class TournamentStub(object):
 	@classmethod
 	def getCode(cls, session):
 		session._log('Calling getCode...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_TSTUB['codes'],
 			url_params = {
 				'version':			cls.version
@@ -30,7 +30,7 @@ class TournamentStub(object):
 	@classmethod
 	def getCodesByTournament(cls, session, tournament_code):
 		session._log('Calling getCodesByTourn...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_TSTUB['by tournament'],
 			url_params = {
 				'version':			cls.version,
@@ -54,7 +54,7 @@ class TournamentStub(object):
 	@classmethod
 	def getProviders(cls, session, tournament_code):
 		session._log('Calling getProviders...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_TSTUB['providers'],
 			url_params = {
 				'version':			cls.version
@@ -77,7 +77,7 @@ class TournamentStub(object):
 	@classmethod
 	def getTournaments(cls, session):
 		session._log('Calling getTournaments...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_TSTUB['tournaments'],
 			url_params = {
 				'version':			cls.version

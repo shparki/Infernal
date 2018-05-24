@@ -34,5 +34,16 @@
 					will accept a variable length key: value paired entries. 
 					Convert to dict, then pass into the request as the expected
 					dict of key-value pairs
+				[_] For logging exceptions, must use the str() of each return
+				[/] Convert param values in request to string, then to lower
+				 	^	Not as easy as it sounds- maybe try a decorator that 
+				 		will check for allowed params and make sure they are in
+				 		the right format
 
+5/23/2018	- Reformating outputs (Finished: Summoner, Champion)
+			
+			TODO:
+			Questions:
+				- What should I name the series? What would work best in the
+					longrun?
 

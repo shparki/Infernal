@@ -13,7 +13,7 @@ class StaticData(object):
 	@classmethod
 	def getChampions(cls, session, params={}):
 		session._log('Calling getChamps...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['champions'],
 			url_params = {
 				'version': 			cls.version
@@ -41,7 +41,7 @@ class StaticData(object):
 	@classmethod
 	def getChampion(cls, session, champion_id, params={}):
 		session._log('Calling getChamp...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['by champion'],
 			url_params = {
 				'version':			cls.version,
@@ -66,7 +66,7 @@ class StaticData(object):
 	@classmethod
 	def getItems(cls, session, params={}):
 		session._log('Calling getItems...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['items'],
 			url_params = {
 				'version':			cls.version
@@ -92,7 +92,7 @@ class StaticData(object):
 	@classmethod
 	def getItem(cls, session, item_id, params={}):
 		session._log('Calling getItem...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['by item'],
 			url_params = {
 				'version':			cls.version,
@@ -118,7 +118,7 @@ class StaticData(object):
 	@classmethod
 	def getLanguageStrings(cls, session, params={}):
 		session._log('Calling getLangStrings...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['language strings'],
 			url_params = {
 				'version':			cls.version
@@ -144,7 +144,7 @@ class StaticData(object):
 	@classmethod
 	def getSupportedLanguages(cls, session, params={}):
 		session._log('Calling getSuppLangs...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['supported languages'],
 			url_params = {
 				'version':			cls.version
@@ -168,7 +168,7 @@ class StaticData(object):
 	@classmethod
 	def getMaps(cls, session, params={}):
 		session._log('Calling getMaps...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['maps'],
 			url_params = {
 				'version':			cls.version
@@ -209,7 +209,7 @@ class StaticData(object):
 	@classmethod
 	def getMasteries(cls, session, params={}):
 		session._log('Calling getMaps...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['masteries'],
 			url_params = {
 				'version':			cls.version
@@ -235,7 +235,7 @@ class StaticData(object):
 	@classmethod
 	def getMastery(cls, session, mastery_id, params={}):
 		session._log('Calling getMastery...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['by mastery'],
 			url_params = {
 				'version':			cls.version,
@@ -260,7 +260,7 @@ class StaticData(object):
 	@classmethod
 	def getIcons(cls, session, params={}):
 		session._log('Calling getIcons...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['profile icons'],
 			url_params = {
 				'version':			cls.version
@@ -302,7 +302,7 @@ class StaticData(object):
 	@classmethod
 	def getRealms(cls,session, params={}):
 		session._log('Calling getRealms...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['realms'],
 			url_params = {
 				'version':			cls.version
@@ -330,7 +330,7 @@ class StaticData(object):
 	@classmethod
 	def getReforgedPaths(cls, session, params={}):
 		session._log('Calling getRefPaths...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['rune paths'],
 			url_params = {
 				'version':			cls.version
@@ -354,7 +354,7 @@ class StaticData(object):
 	@classmethod
 	def getReforgedPath(cls, session, path_id):
 		session._log('Calling getRefPaths...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['by rune path'],
 			url_params = {
 				'version':			cls.version,
@@ -378,7 +378,7 @@ class StaticData(object):
 	@classmethod
 	def getReforgedRunes(cls, session):
 		session._log('Calling getRefRunes...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['reforged runes'],
 			url_params = {
 				'version':			cls.version
@@ -401,7 +401,7 @@ class StaticData(object):
 	@classmethod
 	def getReforgedRune(cls, session, rune_id):
 		session._log('Calling getRefRunes...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['by reforged rune'],
 			url_params = {
 				'version':			cls.version,
@@ -425,7 +425,7 @@ class StaticData(object):
 	@classmethod
 	def getRunes(cls, session):
 		session._log('Calling getRunes...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['runes'],
 			url_params = {
 				'version':			cls.version
@@ -448,7 +448,7 @@ class StaticData(object):
 	@classmethod
 	def getRune(cls, session, rune_id):
 		session._log('Calling getRune...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['by rune'],
 			url_params = {
 				'version':			cls.version,
@@ -472,7 +472,7 @@ class StaticData(object):
 	@classmethod
 	def getSummonerSpells(cls, session, params={}):
 		session._log('Calling getSumSpells...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['summoner spells'],
 			url_params = {
 				'version':			cls.version
@@ -498,7 +498,7 @@ class StaticData(object):
 	@classmethod
 	def getSummonerSpell(cls, session, spell_id, params={}):
 		session._log('Calling getSumSpells...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['by summoner spell'],
 			url_params = {
 				'version':			cls.version,
@@ -523,7 +523,7 @@ class StaticData(object):
 	@classmethod
 	def getTarballLinks(cls, session, params={}):
 		session._log('Calling getTarball...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['tarball links'],
 			url_params = {
 				'version':			cls.version
@@ -546,7 +546,7 @@ class StaticData(object):
 	@classmethod
 	def getVersions(cls, session, params={}):
 		session._log('Calling getVersions...')
-		url = session._buildurl(
+		url = session.build_url(
 			url = const.URLS_SDATA['versions'],
 			url_params= {
 				'version':			cls.version

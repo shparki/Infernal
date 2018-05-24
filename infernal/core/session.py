@@ -16,17 +16,23 @@ import time
 
 class Session(object):
 
-	def __init__ (self, api_key, endpoint='na-old'):
-		self.data_dpath = os.getcwd() + '/data'
-		self.logs_dpath = os.getcwd() + '/logs'
-
+	def __init__ (self, api_key, endpoint='na-old', name=''):
+		
+		# Save api_key
 		self.api_key = api_key
+
+		# Check if the endpoint is valid; if not default to 'na-old'
 		self.endpoint = 'na-old'
 		if endpoint in const.ENDPOINTS.keys():
 			self.endpoint = endpoint
-		# add code here to log that endpoint not found, using default endopint
+			self._log('Endpoint {} not found; using default endpoing \'na-old\''.format(endpoint))
 
+		# uid functions as a unique identifier for each session and the names for logging files
 		self.uid = datetime.datetime.today().strftime('%y%m%d_%H%M%S')
+
+		# Create data & logs folders if they do not exist- created at the location of the script
+		self.data_dpath = os.getcwd() + '/data'
+		self.logs_dpath = os.getcwd() + '/logs'
 
 		if not os.path.exists(self.data_dpath):
 			os.mkdir(self.data_dpath)
@@ -34,16 +40,18 @@ class Session(object):
 		if not os.path.exists(self.logs_dpath):
 			os.mkdir(self.logs_dpath)
 
+		# Instantiate logger file
 		self.log_file = None
 		self.log_path = self.logs_dpath + '/' + self.uid + '.log'
 		if not os.path.exists(self.log_path):
 			self.log_file = open(self.log_path, 'w')
 			self.log_file.close()
 
-
+		# Disable requests logging
 		urllib3_log = logging.getLogger('urllib3')
 		urllib3_log.setLevel(logging.CRITICAL)
 
+		# Initialize logging & format
 		logging.basicConfig(
 			level = 	logging.DEBUG,
 			filename = 	self.log_path,
@@ -53,6 +61,7 @@ class Session(object):
 
 		self._log('Initialized ' + str(self))
 
+		# Rate limiting logic here
 		self.request_rate = 0.5
 		self.request_throttle = 1.1
 
@@ -61,7 +70,7 @@ class Session(object):
 		return 'session_{}'.format(self.uid)
 
 
-
+	
 	def build_url (self, url, url_params = {}):
 		args = {
 			'endpoint':	const.ENDPOINTS[self.endpoint],
@@ -76,8 +85,6 @@ class Session(object):
 		return req_url
 
 	def _request(self, url, params = {}):
-		
-
 		param_string = ''
 		for key, value in params.items():
 			param_string += (str(key) + '=' + str(value) + '&')
@@ -97,6 +104,7 @@ class Session(object):
 
 	def request(self, url, params={}):
 		time.sleep(self.request_rate * self.request_throttle)
+
 		req = self._request(url=url, params=params)
 
 		if req.status_code >= 400:
