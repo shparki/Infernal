@@ -17,8 +17,9 @@
 				[_] Check for errors in exception handling for requests
 				[_] Add specific error code handling for each method
 				[_] Exception logging
-				[_] Update StaticData, ThirdPartCode, Tournament, TournamentStub
-					data structures for runes & rune paths (updated and old)	
+				[_] Update StaticData, ThirdPartCode, Tournament, 
+					TournamentStub	data structures for runes & rune paths 
+					(updated and old)	
 				[_] change _log to something more accessible
 			Questions:
 				- Is there a better method to handle the brute-force way of
@@ -43,6 +44,8 @@
 5/23/2018	- Reformating outputs (Finished: Summoner, Champion)
 			
 			TODO:
+				[_] Extension methods that add static data to the outputs
+					(Champion names for example)
 			Questions:
 				- What should I name the series? What would work best in the
 					longrun?

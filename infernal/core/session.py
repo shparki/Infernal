@@ -103,7 +103,7 @@ class Session(object):
 		return req
 
 	def request(self, url, params={}):
-		time.sleep(self.request_rate * self.request_throttle)
+		time.sleep(self.request_rate * (1 + self.request_throttle))
 
 		req = self._request(url=url, params=params)
 

@@ -84,7 +84,7 @@ class Match(object):
 		return r
 
 	@classmethod
-	def getMatches(cls, session, account_id, params={}):
+	def getMatches(cls, session, account_id, params={}, meta=False):
 		session._log('Calling getMatches...')
 		url = session.build_url(
 			url = const.URLS_MATCH['by account'],
@@ -106,18 +106,19 @@ class Match(object):
 			return pd.Series()
 
 
-
 		matches = r['matches']
 		startindex = r['startIndex']
 		endindex = r['endIndex']
 		total = r['totalGames']
 
-		matches_frame = pd.DataFrame(matches).set_index('gameId')
-		matches_frame.timestamp = pd.to_datetime(matches_frame.timestamp, unit='ms')
-		data_series = pd.Series([matches_frame, startindex, endindex, total],
-								index = ['matches', 'startIndex', 'endIndex', 'totalGames'])
-		data_series = data_series.rename(account_id)
-		return data_series
+		matches_frame = pd.DataFrame(matches)
+		meta_series = pd.Series([startindex, endindex, total], 
+			index=['startIndex', 'endIndex', 'totalGames'])
+
+		if meta:
+			return matches_frame, meta_series
+		else:
+			return matches_frame
 
 	@classmethod
 	def getRecent(cls, session, account_id, params={}):

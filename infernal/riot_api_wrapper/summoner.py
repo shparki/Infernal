@@ -58,8 +58,6 @@ class Summoner(object):
 			session._log(e, level='error')
 			return pd.Series()
 
-		print(r)
-
 		data_series = pd.Series(r)
 		data_series = data_series.rename(data_series['name'])
 		return data_series
