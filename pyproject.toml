@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "infernal"
+version = "0.1a"
+description = "This is a description for my project."
+
+license = "MIT"
+authors = [
+    "Matt Murray <murrmat@gmail.com>"
+]
+
+readme = "README.md"
+repository = "https://github.com/infernal-esports-analytics/Infernal"
+homepage = "https://github.com/infernal-esports-analytics/Infernal"
+
+keywords = ["python", "esports", "lol", "leagueoflegends", "analytics"]
+
+[tool.poetry.dependencies]
+python = "~3.7"
